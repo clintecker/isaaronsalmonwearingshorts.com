@@ -7,15 +7,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
   </head>
   <body>
-    <section ng-controller="ShortsController" id="well">{{wearing_shorts}}</section>
+    <section ng-controller="ShortsController" id="well">{{ wearing_shorts | yes_or_no }}</section>
     <script type="text/javascript">
       var myApp = angular.module('myApp', []);
 
+      angular.module('myApp').filter('yes_or_no', function(){
+        return function(v){
+          return v ? "Yes" : "No";
+        };
+      });
+
       function ShortsController($scope, $http) {
-          $http.get('/index.json')
-          .success(function (data) {
-              $scope.set('wearing_shorts', data);
-          });
+        $http.get('/index.json').success(function (data) {
+          $scope.wearing_shorts = data.properties['wearing-shorts'];
+        });
       }
     </script>
   </body>
