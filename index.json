@@ -1,0 +1,11 @@
+{
+  "class": [ "aaronsalmon" ],
+  "properties": { 
+      "wearing=shorts": true 
+  },
+  "links": [
+    { "rel": [ "self" ], "href": "http://isaaronsalmonwearingshorts.com/" },
+    { "rel": [ "yesterday" ], "href": "http://isaaronsalmonwearingshorts.com/" },
+    { "rel": [ "tomorrow" ], "href": "http://isaaronsalmonwearingshorts.com/" }
+  ]
+}
