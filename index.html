@@ -10,7 +10,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
     success = function(data) {
-        if (data['shorts'] == true) {
+        if (data['properties']['wearing-shorts'] == true) {
             $("#well").text('YES');
         } else {
             $("#well").text('NO');
@@ -18,7 +18,7 @@
     };
     $.ajax({
         dataType: "json",
-        url: "api.json",
+        url: "index.json",
         success: success
         });
     </script>
