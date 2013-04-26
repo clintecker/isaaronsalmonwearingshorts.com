@@ -6,6 +6,21 @@
     <link rel="stylesheet" type="text/css" media="all" href="normalize.css" />
 </head>
 <body>
-   <section id="well">YES</section>
+    <section id="well">MAYBE</section>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    success = function(data) {
+        if (data['shorts'] == true) {
+            $("#well").text('YES');
+        } else {
+            $("#well").text('NO');
+        }
+    };
+    $.ajax({
+        dataType: "json",
+        url: "api.json",
+        success: success
+        });
+    </script>
 </body>
 </html>
