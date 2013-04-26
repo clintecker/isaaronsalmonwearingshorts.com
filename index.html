@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="myApp">
   <head>
     <meta charset="utf-8">
     <title>Is Aaron Salmon wearing shorts today?</title>
@@ -7,6 +7,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
   </head>
   <body>
-    <section id="well">{{wearing_shorts}}</section>
+    <section ng-controller="ShortsController" id="well">{{wearing_shorts}}</section>
+    <script type="text/javascript">
+      var myApp = angular.module('myApp', []);
+
+      function ShortsController($scope, $http) {
+          $http.get('/index.json')
+          .success(function (data) {
+              $scope.set('wearing_shorts', data);
+          });
+      }
+    </script>
   </body>
 </html>
