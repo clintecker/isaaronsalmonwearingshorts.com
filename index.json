@@ -1,7 +1,7 @@
 {
   "class": [ "aaronsalmon" ],
   "properties": {
-      "wearing-shorts": true
+      "wearing-shorts": false
   },
   "links": [
     { "rel": [ "self" ], "href": "http://isaaronsalmonwearingshorts.com/" },
