@@ -1,26 +1,27 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html ng-app="myApp">
+  <head>
     <meta charset="utf-8">
     <title>Is Aaron Salmon wearing shorts today?</title>
     <link rel="stylesheet" type="text/css" media="all" href="normalize.css" />
-</head>
-<body>
-    <section id="well">MAYBE</section>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+  </head>
+  <body>
+    <section ng-controller="ShortsController" id="well">{{ wearing_shorts | yes_or_no }}</section>
     <script type="text/javascript">
-    success = function(data) {
-        if (data['properties']['wearing-shorts'] == true) {
-            $("#well").text('YES');
-        } else {
-            $("#well").text('NO');
-        }
-    };
-    $.ajax({
-        dataType: "json",
-        url: "index.json",
-        success: success
+      var myApp = angular.module('myApp', []);
+
+      angular.module('myApp').filter('yes_or_no', function(){
+        return function(v){
+          return v ? "Yes" : "No";
+        };
+      });
+
+      function ShortsController($scope, $http) {
+        $http.get('/index.json').success(function (data) {
+          $scope.wearing_shorts = data.properties['wearing-shorts'];
         });
+      }
     </script>
-</body>
+  </body>
 </html>
